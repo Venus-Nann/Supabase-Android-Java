@@ -1,0 +1,9 @@
+[
+  {
+    "artifactId": "volley",
+    "excludes": [],
+    "groupId": "com.android.volley",
+    "scope": "compile",
+    "versionName": "1.2.1"
+  }
+]
