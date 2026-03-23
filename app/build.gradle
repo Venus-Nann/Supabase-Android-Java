@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'maven-publish'
+	id 'com.android.library'
 }
 
 android {
@@ -27,6 +28,7 @@ android {
 }
 
 dependencies {
+	api 'com.android.volley:volley:1.2.1'
 	// CodeAssist does NOT support adding dependencies here,
 	// try using the library manager instead
 }
