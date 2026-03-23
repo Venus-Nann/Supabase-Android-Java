@@ -20,7 +20,7 @@ dependencyResolutionManagement {
     }
 }
 ```
- ###၂။ Library Dependency ထည့်သွင်းခြင်း
+ ### ၂။ Library Dependency ထည့်သွင်းခြင်း
 သင်၏ App level build.gradle ဖိုင်တွင် အောက်ပါအတိုင်း ထည့်သွင်းပါ။
 ```gradle
 dependencies {
