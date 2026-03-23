@@ -30,15 +30,17 @@ dependencies {
 	// CodeAssist does NOT support adding dependencies here,
 	// try using the library manager instead
 }
-
 afterEvaluate {
     publishing {
         publications {
-            release(MavenPublication) {
-                from components.release
-                groupId = 'com.github.Venus-Nann' 
-                artifactId = 'supabase-android-java' 
-                version = '1.0.0-beta'
+            
+            mavenJava(MavenPublication) {
+                
+                from components.findByName('release') 
+                
+                groupId = 'com.github.Venus-Nann'
+                artifactId = 'Supabase-Android-Java'
+                version = 'v1.0.0-beta'
             }
         }
     }
