@@ -16,7 +16,7 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        maven { url '[https://jitpack.io](https://jitpack.io)' }
+        maven { url 'https://jitpack.io' }
     }
 }
 ```
@@ -24,7 +24,7 @@ dependencyResolutionManagement {
 သင်၏ App level build.gradle ဖိုင်တွင် အောက်ပါအတိုင်း ထည့်သွင်းပါ။
 ```gradle
 dependencies {
-    implementation 'com.github.Venus-Nann:Supabase-Android-Java:v1.0.3-beta'
+    implementation 'com.github.Venus-Nann:Supabase-Android-Java:v1.0.4-beta'
 }
 ```
 ## 🛠 How to Use (အသုံးပြုနည်း)
