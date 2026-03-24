@@ -185,7 +185,7 @@ storage.uploadFile("YOUR_FILE_PATH","YOUR_FILE_NAME",new SupabaseListener<String
           }
 
           @Override
-          public void onErro====r(String error) {
+          public void onError(String error) {
               //မအောင်မြင်လျှင်
           }
  });
@@ -200,7 +200,7 @@ storage.deleteFile("YOUR_FILE_NAME",new SupabaseListener<String>() {
           }
 
           @Override
-          public void onErro====r(String error) {
+          public void onError(String error) {
               //မအောင်မြင်လျှင်
           }
  });
