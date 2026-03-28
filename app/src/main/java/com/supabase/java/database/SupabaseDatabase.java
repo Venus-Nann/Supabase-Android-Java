@@ -135,8 +135,11 @@ public class SupabaseDatabase {
 
     // --- Execution ---
     public void execute(SupabaseListener listener) {
+		if (filterQuery.startsWith("&")) {
+    filterQuery = filterQuery.substring(1);
+		}
         // Final URL combine (Base URL + Filters)
-        String finalUrl = this.url + (this.url.contains("?") ? "" : "") + filterQuery;
+        String finalUrl = this.url + (this.url.contains("?") ? "" : "?") + filterQuery;
         
         sendRequest(method, finalUrl, object == null ? null : object.toString(), listener);
         
