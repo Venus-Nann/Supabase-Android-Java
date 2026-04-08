@@ -19,7 +19,12 @@ public class SupabaseDatabase {
     private String url = "";
     private int method = Request.Method.GET;
     private JSONObject object = null;
-
+	private String userKey = "";
+	
+	public void setUserKey(String userKey){
+		this.userKey = userKey;
+	}
+	
     public SupabaseDatabase(SupabaseClient client, String tableName) {
         this.client = client;
         this.tableName = tableName;
@@ -171,8 +176,8 @@ public class SupabaseDatabase {
             public Map<String, String> getHeaders() {
                 Map<String, String> headers = new HashMap<>();
                 headers.put("apikey", client.getKey());
-                headers.put("Authorization", "Bearer " + client.getKey());
-                headers.put("Content-Type", "application/json");
+                headers.put("Authorization", "Bearer " + (userKey.isEmpty() ? client.getKey() : userKey));
+				headers.put("Content-Type", "application/json");
                 headers.put("Prefer", "return=representation");
 				headers.put("Accept","application/json");
 				Log.e("-----key",client.getKey());
@@ -188,7 +193,7 @@ public class SupabaseDatabase {
 	
 	private String handleDbError(VolleyError error) {
     if (error.networkResponse == null) {
-        return "အင်တာနက် ချိတ်ဆက်မှု မရှိပါဘူး သားကြီး။";
+        return "အင်တာနက် ချိတ်ဆက်မှု မရှိပါဘူး။";
     }
 
     int statusCode = error.networkResponse.statusCode;
