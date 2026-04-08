@@ -19,11 +19,7 @@ public class SupabaseDatabase {
     private String url = "";
     private int method = Request.Method.GET;
     private JSONObject object = null;
-	private String userKey = "";
 	
-	public void setUserKey(String userKey){
-		this.userKey = userKey;
-	}
 	
     public SupabaseDatabase(SupabaseClient client, String tableName) {
         this.client = client;
