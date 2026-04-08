@@ -14,6 +14,11 @@ public class SupabaseClient {
 	public void setUserKey(String userKey){
 		this.userKey = userKey;
 	}
+	
+	public String getUserKey(){
+		return userKey;
+	}
+	
     public SupabaseClient(Context context,String url, String key) {
         this.context = context;
 		this.url = url;
