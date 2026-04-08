@@ -59,8 +59,8 @@ public class SupabaseBucket {
                 public Map<String, String> getHeaders() {
                     Map<String, String> headers = new HashMap<>();
                     headers.put("apikey", client.getKey());
-                    headers.put("Authorization", "Bearer " + client.getKey());
-                    headers.put("x-upsert", "true"); 
+                    headers.put("Authorization", "Bearer " + (client.getUserKey().isEmpty() ? client.getKey() : client.getUserKey()));
+					headers.put("x-upsert", "true"); 
                     return headers;
                 }
             };
@@ -90,8 +90,8 @@ public class SupabaseBucket {
         public Map<String, String> getHeaders() {
             Map<String, String> headers = new HashMap<>();
             headers.put("apikey", client.getKey());
-            headers.put("Authorization", "Bearer " + client.getKey());
-            return headers;
+            headers.put("Authorization", "Bearer " + (client.getUserKey().isEmpty() ? client.getKey() : client.getUserKey()));
+			return headers;
         }
 
         @Override
@@ -116,7 +116,7 @@ public class SupabaseBucket {
 	
 	private String handleStorageError(VolleyError error) {
     if (error.networkResponse == null) {
-        return "File တင်လို့မရပါဘူး။ အင်တာနက်လိုင်း ပြန်စစ်ပေးပါ သားကြီး။";
+        return "File တင်လို့မရပါဘူး။ အင်တာနက်လိုင်း ပြန်စစ်ပေးပါ။";
     }
 
     int statusCode = error.networkResponse.statusCode;
