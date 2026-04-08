@@ -176,7 +176,7 @@ public class SupabaseDatabase {
             public Map<String, String> getHeaders() {
                 Map<String, String> headers = new HashMap<>();
                 headers.put("apikey", client.getKey());
-                headers.put("Authorization", "Bearer " + (userKey.isEmpty() ? client.getKey() : userKey));
+				headers.put("Authorization", "Bearer " + (client.getUserKey().isEmpty() ? client.getKey() : client.getUserKey()));			
 				headers.put("Content-Type", "application/json");
                 headers.put("Prefer", "return=representation");
 				headers.put("Accept","application/json");
