@@ -9,7 +9,7 @@ public class SupabaseClient {
     private final String url;
     private final String key;
 	private final Context context;
-	private String userKey;
+	private String userKey = "";
 	
 	public void setUserKey(String userKey){
 		this.userKey = userKey;
