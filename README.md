@@ -24,7 +24,7 @@ dependencyResolutionManagement {
 သင်၏ App level build.gradle ဖိုင်တွင် အောက်ပါအတိုင်း ထည့်သွင်းပါ။
 ```gradle
 dependencies {
-    implementation 'com.github.Venus-Nann:Supabase-Android-Java:v1.0.7-beta'
+    implementation 'com.github.Venus-Nann:Supabase-Android-Java:v1.0.8-beta'
 }
 ```
 ## 🛠 How to Use (အသုံးပြုနည်း)
