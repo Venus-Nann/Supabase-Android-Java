@@ -17,6 +17,44 @@ import org.json.JSONObject;
 public class SupabaseAuth {
 	private SupabaseClient client;
 	private RequestQueue requestQueue;
+	private String refreshToken;
+	
+	public String getRefreshToken(){
+		return refreshToken;
+	}
+	
+	public void requestNewToken(String refreshToken,SupabaseListener<String> listener){
+		String url = client.getUrl() + "/auth/v1/token?grant_type=refresh_token";
+		JSONObject jsonBody = new JSONObject();
+		try {		
+			jsonBody.put("refresh_token",refreshToken);
+		} catch (JSONException e) { e.printStackTrace(); }
+		
+		JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, jsonBody,
+		response -> {
+			try {
+				String token = response.getString("access_token");
+				listener.onSuccess(token);
+				} catch (JSONException e) {
+				listener.onError("Parsing error: " + e.getMessage());
+			}
+		},
+		error -> {
+			String errorString = handleAuthError(error);
+			listener.onError(errorString);
+		}
+		
+		) {
+			@Override
+			public Map<String, String> getHeaders() {
+				Map<String, String> headers = new HashMap<>();
+				headers.put("apikey", client.getKey());
+				headers.put("Content-Type", "application/json");
+				return headers;
+			}
+		};
+		requestQueue.add(request);
+	}
 	
 	public SupabaseAuth(SupabaseClient client) {
 		this.client = client;
@@ -26,7 +64,7 @@ public class SupabaseAuth {
 	// Sign Up (အကောင့်အသစ်ဖွင့်ခြင်း)
 	public void signUp(String email, String password, final SupabaseListener<String> listener) {
 		String url = client.getUrl() + "/auth/v1/signup";
-		Log.i("-----",url);
+	//	Log.i("-----",url);
 		performAuthRequest(url, email, password, listener);
 	}
 	
@@ -35,6 +73,7 @@ public class SupabaseAuth {
 		String url = client.getUrl() + "/auth/v1/token?grant_type=password";
 		performAuthRequest(url, email, password, listener);
 	}
+	
 	
 	private void performAuthRequest(String url, String email, String password, final SupabaseListener<String> listener) {
 		JSONObject jsonBody = new JSONObject();
@@ -47,6 +86,7 @@ public class SupabaseAuth {
 		response -> {
 			try {
 				String token = response.getString("access_token");
+				refreshToken = response.getString("refresh_token");
 				listener.onSuccess(token);
 				} catch (JSONException e) {
 				listener.onError("Parsing error: " + e.getMessage());
