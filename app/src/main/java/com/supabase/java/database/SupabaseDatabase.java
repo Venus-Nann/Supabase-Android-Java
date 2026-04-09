@@ -146,7 +146,7 @@ public class SupabaseDatabase {
         
         // Reset state for next use
         filterQuery = ""; 
-		Log.e("----SupaDB","execute");
+	//	Log.e("----SupaDB","execute");
     }
 	
     private void sendRequest(int method, String url, final String body, final SupabaseListener listener) {
@@ -176,7 +176,7 @@ public class SupabaseDatabase {
 				headers.put("Content-Type", "application/json");
                 headers.put("Prefer", "return=representation");
 				headers.put("Accept","application/json");
-				Log.e("-----key",client.getKey());
+			//	Log.e("-----key",(client.getUserKey().isEmpty() ? client.getKey() : client.getUserKey()));
                 return headers;
             }
         };
